@@ -1,0 +1,73 @@
+﻿@model Park
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h2>@Model.ParkName</h2>
+<div>
+    <h3>@Model.State</h3>
+</div>
+<div>
+    <div>
+        <img src="~/img/parks/@Model.ParkCode).jpg" />
+    </div>
+    <div>
+        <h3>@Model.ParkName</h3>
+    </div>
+    <div>
+        <div>@Model.ParkDescription</div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ACREAGE</th>
+                <th>ELEVATION</th>
+                <th>MILES OF TRAIL</th>
+                <th>CAMPSITES</th>
+                <th>CLIMATE</th>
+                <th>EST.</th>
+                <th>VISITORS</th>
+                <th>ENTRY FEE</th>
+                <th>UNIQUE SPECIES</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Acreage</td>
+                <td>@Model.ElevationInFt Feet</td>
+                <td>@Model.MilesOfTrail Miles</td>
+                <td>@Model.NumberOfCampsites Campsites</td>
+                <td>@Model.Climate</td>
+                <td>@Model.YearFounded</td>
+                <td>@Model.AnnualVisitorCount</td>
+                <td>@Model.EntryFee</td>
+                <td>@Model.NumberOfAnimalSpecies Little Creatures</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="weatherBox">
+
+        @foreach (var weather in Model.Forecast)
+        { 
+
+            @if (weather.FiveDayForecastValue == 1)
+            {
+                <div class="todayWeather">
+
+                </div>
+            }
+            else
+            {
+                <div class="forcast">
+
+
+
+                </div>
+            }
+        }
+
+
+
+    </div>
+</div>
+

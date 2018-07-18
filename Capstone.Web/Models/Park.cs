@@ -12,7 +12,7 @@ namespace Capstone.Web.Models
 		public string State { get; set; }
 		public int Acreage { get; set; }
 		public int ElevationInFt { get; set; }
-		public double MilesOfTrail {get;set;}
+		public double MilesOfTrail { get; set; }
 		public int NumberOfCampsites { get; set; }
 		public string Climate { get; set; }
 		public int YearFounded { get; set; }
@@ -22,5 +22,6 @@ namespace Capstone.Web.Models
 		public string ParkDescription { get; set; }
 		public int EntryFee { get; set; }
 		public int NumberOfAnimalSpecies { get; set; }
+		public IList<Weather> Forecast {get;set;}
     }
 }

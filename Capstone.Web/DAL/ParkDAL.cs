@@ -9,16 +9,30 @@ namespace Capstone.Web.DAL
 {
 	public class ParkDAL : IParkDAL
 	{
+		/// <summary>
+		/// 
+		/// </summary>
 		private readonly string connectionString;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="connectionString"></param>
 		public ParkDAL(string connectionString)
 		{
 			this.connectionString = connectionString;
 		}
-		public Park GetPark()
+
+		public Park GetPark(string parkCode)
 		{
-			throw new NotImplementedException();
+			return GetParks().FirstOrDefault(p => p.ParkCode == parkCode);
+
 		}
 
+		/// <summary>
+		/// Builds list of Parks via connection to DB
+		/// </summary>
+		/// <returns>List of Parks</returns>
 		public IList<Park> GetParks()
 		{
 			List<Park> parks = new List<Park>();
@@ -56,7 +70,6 @@ namespace Capstone.Web.DAL
 						parks.Add(park);
 					}
 				}
-
 			}
 			catch(SqlException)
 			{

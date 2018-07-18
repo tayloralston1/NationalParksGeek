@@ -9,26 +9,43 @@ using Capstone.Web.DAL;
 
 namespace Capstone.Web.Controllers
 {
-    public class HomeController : Controller
-    {
+	public class HomeController : Controller
+	{
 		private readonly IParkDAL dal;
+
 		public HomeController(IParkDAL dal)
 		{
 			this.dal = dal;
 		}
-        public IActionResult Index()
-        {
+
+		private readonly IWeatherDAL wdal;
+
+		public HomeController(IWeatherDAL wdal)
+		{
+			this.wdal = wdal;
+		}
+
+
+		public IActionResult Index()
+		{
 			var parks = dal.GetParks();
 
-            return View(parks);
-        }
+			return View(parks);
+		}
 
-      
+		public IActionResult Detail(string parkCode)
+		{
+			var park = dal.GetPark(parkCode);
+			park.Forecast = wdal.FiveDayForecast(parkCode);
+			return View(park);
+		}
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-    }
+
+
+		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+		public IActionResult Error()
+		{
+			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+		}
+	}
 }

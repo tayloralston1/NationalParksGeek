@@ -10,10 +10,14 @@
 {
 <div>
     <div>
-    <img src="~/img/parks/@(park.ParkCode).png" /> 
+        <a asp-controller="home" asp-action="detail" asp-route-id="@park.ParkCode">
+            <img src="~/img/parks/@(park.ParkCode).jpg" />
+        </a>
     </div>
     <div>
-        <h3>@park.ParkName</h3>
+        <a asp-controller="home" asp-action="detail" asp-route-id="@park.ParkCode">
+            <h3>@park.ParkName</h3>
+        </a>
         <p>@park.ParkDescription</p>
     </div>
 </div>
