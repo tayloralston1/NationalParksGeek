@@ -9,7 +9,7 @@
 </div>
 <div>
     <div>
-        <img src="~/img/parks/@Model.ParkCode).jpg" />
+        <img src="~/img/parks/@(Model.ParkCode).jpg" />
     </div>
     <div>
         <h3>@Model.ParkName</h3>
@@ -48,20 +48,27 @@
     <div class="weatherBox">
 
         @foreach (var weather in Model.Forecast)
-        { 
+        {
 
             @if (weather.FiveDayForecastValue == 1)
             {
                 <div class="todayWeather">
+                    <img src="~/img/weather/@(weather.Forecast.Replace(" ", String.Empty)).png" />
+                    <p>High @weather.High Low @weather.Low</p>
+                    <p>How To Be Prepared: @weather.GetTheGear(weather.Forecast)</p>
+                    <p>Advisory Warning: @weather.TempAdvisory(weather.High, weather.Low)</p>
+
+
 
                 </div>
             }
             else
             {
-                <div class="forcast">
-
-
-
+                <div class="forecast">
+                    <img src="~/img/weather/@(weather.Forecast.Replace(" ",String.Empty)).png" />
+                    <p>High @weather.High Low @weather.Low</p>
+                    <p>How To Be Prepared: @weather.GetTheGear(weather.Forecast)</p>
+                    <p>Advisory Warning: @weather.TempAdvisory(weather.High, weather.Low)</p>
                 </div>
             }
         }

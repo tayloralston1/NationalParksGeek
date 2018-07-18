@@ -1,0 +1,25 @@
+﻿@model Survey
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Survey</h2>
+
+<div>
+    <form asp-action="new" asp-controller="survey" method="post">
+
+        <label asp-for="ParkCode"></label>
+        <select asp-for="ParkCode" asp-items="@ViewBag.ParkCode"></select>
+
+        <label asp-for="Email"></label>
+        <input asp-for="Email" />
+
+        <label asp-for="State"></label>
+        <input asp-for="State" />
+
+        <label asp-for="ActivityLevel"></label>
+        <select asp-for="ActivityLevel" asp-items="@ViewBag.ActivityLevel"></select>
+
+        <input type="submit" value="Submit Survey" />
+    </form>
+</div>

@@ -12,18 +12,20 @@ namespace Capstone.Web.Controllers
 	public class HomeController : Controller
 	{
 		private readonly IParkDAL dal;
-
-		public HomeController(IParkDAL dal)
-		{
-			this.dal = dal;
-		}
-
 		private readonly IWeatherDAL wdal;
 
-		public HomeController(IWeatherDAL wdal)
+		public HomeController(IParkDAL dal, IWeatherDAL wdal)
 		{
+			this.dal = dal;
 			this.wdal = wdal;
 		}
+
+		//private readonly IWeatherDAL wdal;
+
+		//public HomeController(IWeatherDAL wdal)
+		//{
+		//	this.wdal = wdal;
+		//}
 
 
 		public IActionResult Index()
