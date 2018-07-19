@@ -14,10 +14,30 @@ namespace Capstone.Web.DAL
 		{
 			this.connectionString = connectionString;
 		}
-		public Survey AddSurvey()
-		{
 
-			throw new NotImplementedException();
+		public void AddSurvey(Survey survey)
+		{
+			try
+			{
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+
+					string sql = "INSERT INTO survey_result VALUES (@parkCode, @emailAddress, @state, @activityLevel);";
+					SqlCommand cmd = new SqlCommand(sql, conn);
+					cmd.Parameters.AddWithValue("@parkCode", survey.ParkCode);
+					cmd.Parameters.AddWithValue("@emailAddress", survey.Email);
+					cmd.Parameters.AddWithValue("@state", survey.State);
+					cmd.Parameters.AddWithValue("@activityLevel", survey.ActivityLevel);
+
+					cmd.ExecuteNonQuery();
+				}
+			}
+			catch(SqlException)
+			{
+				throw;
+			}
+			
 		}
 
 		public IList<Survey> GetSurveys()
@@ -38,23 +58,14 @@ namespace Capstone.Web.DAL
 					while (reader.Read())
 					{
 						Survey survey = new Survey();
-						survey.SurveyID = Convert.ToString(reader["parkCode"]);
-						survey.ParkName = Convert.ToString(reader["parkName"]);
-						survey.State = Convert.ToString(reader["state"]);
-						survey.Acreage = Convert.ToInt32(reader["acreage"]);
-						survey.ElevationInFt = Convert.ToInt32(reader["elevationInFeet"]);
-						park.MilesOfTrail = Convert.ToDouble(reader["milesOfTrail"]);
-						park.NumberOfCampsites = Convert.ToInt32(reader["numberOfCampsites"]);
-						park.Climate = Convert.ToString(reader["climate"]);
-						park.YearFounded = Convert.ToInt32(reader["yearFounded"]);
-						park.AnnualVisitorCount = Convert.ToInt32(reader["annualVisitorCount"]);
-						park.InspirationalQuote = Convert.ToString(reader["inspirationalQuote"]);
-						park.InspirationalQuoteSource = Convert.ToString(reader["inspirationalQuoteSource"]);
-						park.ParkDescription = Convert.ToString(reader["parkDescription"]);
-						park.EntryFee = Convert.ToInt32(reader["entryFee"]);
-						park.NumberOfAnimalSpecies = Convert.ToInt32(reader["numberOfAnimalSpecies"]);
+						//survey.SurveyID = Convert.ToInt32(reader["surveyId"]);
+						survey.ParkCode = Convert.ToString(reader["parkCode"]);
+						//survey.State = Convert.ToString(reader["state"]);
+						//survey.Email = Convert.ToString(reader["emailAddress"]);
+						//survey.ActivityLevel = Convert.ToString(reader["activityLevel"]);
+						survey.SurveyCount = Convert.ToInt32(reader["Favorites"]);
 
-						topFiveParks.Add(park);
+						topFiveParks.Add(survey);
 					}
 				}
 			}
@@ -64,6 +75,5 @@ namespace Capstone.Web.DAL
 			}
 			return topFiveParks;
 		}
-	}
 	}
 }

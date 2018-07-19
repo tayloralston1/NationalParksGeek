@@ -28,8 +28,23 @@ namespace Capstone.Web.Controllers
 			return View();
 			
 		}
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public IActionResult Index(Survey newSurvey)
+		{
+			sdal.AddSurvey(newSurvey);
+			return RedirectToAction("surveyresults","survey");
 
 
+		}
+
+		public IActionResult SurveyResults()
+		{
+			var results = new SurveyResults();
+			var surveys = sdal.GetSurveys();
+			
+			return View(surveys);
+		}
 		//[HttpGet]
 		//public IActionResult New()
 
@@ -40,12 +55,6 @@ namespace Capstone.Web.Controllers
 		//	return View();
 		//}
 
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public IActionResult SurveyResults(Survey survey)
-		{
-			return View();
-		}
 
 
 	}

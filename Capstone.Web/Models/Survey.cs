@@ -15,7 +15,7 @@ namespace Capstone.Web.Models
 		public string Email { get; set; }
 		public string State { get; set; }
 		public string ActivityLevel { get; set; }
-
+		public int SurveyCount { get; set; }
 		//public static List<SelectListItem> Parks = new List<SelectListItem>()
 		//{
 		//	new SelectListItem() {Text = "Glacier National Park", Value = "GNP"},

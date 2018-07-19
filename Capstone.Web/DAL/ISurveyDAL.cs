@@ -9,6 +9,6 @@ namespace Capstone.Web.DAL
     public interface ISurveyDAL
     {
 		IList<Survey> GetSurveys();
-		Survey AddSurvey();
+		void AddSurvey(Survey survey);
     }
 }
