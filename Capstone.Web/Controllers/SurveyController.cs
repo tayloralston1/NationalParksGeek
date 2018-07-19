@@ -22,9 +22,11 @@ namespace Capstone.Web.Controllers
 		[HttpGet]
 		public IActionResult Index()
 		{
+			Survey newSurvey = new Survey();
 			var parkCodes = dal.GetParks();
 			var options = parkCodes.Select(parkCode => new SelectListItem() { Text = parkCode.ParkName, Value = parkCode.ParkCode });
 			ViewBag.ParkCode = options;
+
 			return View();
 			
 		}
@@ -32,28 +34,23 @@ namespace Capstone.Web.Controllers
 		[ValidateAntiForgeryToken]
 		public IActionResult Index(Survey newSurvey)
 		{
+			//var parkCodes = dal.GetParks();
+			//var options = parkCodes.Select(parkCode => new SelectListItem() { Text = parkCode.ParkName, Value = parkCode.ParkCode });
+			//ViewBag.ParkCode = options;
 			sdal.AddSurvey(newSurvey);
 			return RedirectToAction("surveyresults","survey");
-
 
 		}
 
 		public IActionResult SurveyResults()
 		{
-			var results = new SurveyResults();
-			var surveys = sdal.GetSurveys();
-			
-			return View(surveys);
-		}
-		//[HttpGet]
-		//public IActionResult New()
+			IList<SurveyResults> results = new List<SurveyResults>();
 
-		//{
-		//	//var parkCodes = dal.GetParks();
-		//	//var options = parkCodes.Select(parkCode => new SelectListItem() { Text = parkCode.ParkName, Value = parkCode.ParkCode });
-		//	//ViewBag.ParkCode = options;
-		//	return View();
-		//}
+			results = sdal.GetSurveys();
+			
+			return View(results);
+		}
+
 
 
 

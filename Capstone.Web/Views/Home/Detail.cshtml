@@ -45,6 +45,11 @@
             </tr>
         </tbody>
     </table>
+    <form >
+        <input type="radio" name="Unit" value="f" checked> Fahrenheit<br>
+        <input type="radio" name="Unit" value="c"> Celcius<br>
+        
+    </form>
     <div class="weatherBox">
 
         @foreach (var weather in Model.Forecast)
@@ -54,9 +59,9 @@
             {
                 <div class="todayWeather">
                     <img src="~/img/weather/@(weather.Forecast.Replace(" ", String.Empty)).png" />
-                    <p>High @weather.High Low @weather.Low</p>
+                    <p>High @weather.FahHigh Low @weather.FahLow</p>
                     <p>How To Be Prepared: @weather.GetTheGear(weather.Forecast)</p>
-                    <p>Advisory Warning: @weather.TempAdvisory(weather.High, weather.Low)</p>
+                    <p>Advisory Warning: @weather.TempAdvisory(weather.FahHigh, weather.FahLow)</p>
 
 
 
@@ -66,9 +71,9 @@
             {
                 <div class="forecast">
                     <img src="~/img/weather/@(weather.Forecast.Replace(" ",String.Empty)).png" />
-                    <p>High @weather.High Low @weather.Low</p>
+                    <p>High @weather.FahHigh Low @weather.FahLow</p>
                     <p>How To Be Prepared: @weather.GetTheGear(weather.Forecast)</p>
-                    <p>Advisory Warning: @weather.TempAdvisory(weather.High, weather.Low)</p>
+                    <p>Advisory Warning: @weather.TempAdvisory(weather.FahHigh, weather.FahLow)</p>
                 </div>
             }
         }

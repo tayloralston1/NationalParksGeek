@@ -1,9 +1,18 @@
-﻿@model IList<Survey>
+﻿@model IList<SurveyResults>
 @{
     ViewData["Title"] = "SurveyResults";
 }
 
 <h2>Favorite Parks</h2>
-
-
-
+@foreach(var survey in Model)
+{ 
+<div>
+    <img src="/img/parks/@(survey.ParkCode).jpg"/>
+</div>
+<div>
+     <p>@survey.ParkName</p>
+</div>
+<div>
+    <p>@survey.SurveyCount</p>
+</div>
+}

@@ -11,6 +11,7 @@ namespace Capstone.Web.Controllers
 {
 	public class HomeController : Controller
 	{
+		private const string Session_Key = "User_ForC";
 		private readonly IParkDAL dal;
 		private readonly IWeatherDAL wdal;
 
@@ -19,14 +20,6 @@ namespace Capstone.Web.Controllers
 			this.dal = dal;
 			this.wdal = wdal;
 		}
-
-		//private readonly IWeatherDAL wdal;
-
-		//public HomeController(IWeatherDAL wdal)
-		//{
-		//	this.wdal = wdal;
-		//}
-
 
 		public IActionResult Index()
 		{
@@ -41,6 +34,7 @@ namespace Capstone.Web.Controllers
 			park.Forecast = wdal.FiveDayForecast(parkCode);
 			return View(park);
 		}
+
 
 
 

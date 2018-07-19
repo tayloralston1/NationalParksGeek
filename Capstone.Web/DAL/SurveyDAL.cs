@@ -15,8 +15,9 @@ namespace Capstone.Web.DAL
 			this.connectionString = connectionString;
 		}
 
-		public void AddSurvey(Survey survey)
+		public bool AddSurvey(Survey survey)
 		{
+			int rowsAffected = 0;
 			try
 			{
 				using (SqlConnection conn = new SqlConnection(connectionString))
@@ -30,26 +31,34 @@ namespace Capstone.Web.DAL
 					cmd.Parameters.AddWithValue("@state", survey.State);
 					cmd.Parameters.AddWithValue("@activityLevel", survey.ActivityLevel);
 
-					cmd.ExecuteNonQuery();
+					rowsAffected = cmd.ExecuteNonQuery();
 				}
 			}
 			catch(SqlException)
 			{
 				throw;
 			}
+			if (rowsAffected == 1)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 			
 		}
 
-		public IList<Survey> GetSurveys()
+		public IList<SurveyResults> GetSurveys()
 		{
-			List<Survey> topFiveParks = new List<Survey>();
+			List<SurveyResults> topFiveParks = new List<SurveyResults>();
 			try
 			{
 				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
 					conn.Open();
 
-					string sql = "SELECT TOP 5 parkCode , COUNT(*) as'Favorites' FROM survey_result GROUP BY parkCode ORDER BY Favorites DESC; ";
+					string sql = "SELECT TOP 5 survey_result.parkCode , COUNT(*) as 'Favorites', park.parkName FROM survey_result Inner JOIN park ON park.parkCode = survey_result.parkCode GROUP BY survey_result.parkCode, parkName ORDER BY park.parkName ;";
 
 					SqlCommand cmd = new SqlCommand(sql, conn);
 
@@ -57,13 +66,14 @@ namespace Capstone.Web.DAL
 
 					while (reader.Read())
 					{
-						Survey survey = new Survey();
+						SurveyResults survey = new SurveyResults();
 						//survey.SurveyID = Convert.ToInt32(reader["surveyId"]);
 						survey.ParkCode = Convert.ToString(reader["parkCode"]);
 						//survey.State = Convert.ToString(reader["state"]);
 						//survey.Email = Convert.ToString(reader["emailAddress"]);
 						//survey.ActivityLevel = Convert.ToString(reader["activityLevel"]);
 						survey.SurveyCount = Convert.ToInt32(reader["Favorites"]);
+						survey.ParkName = Convert.ToString(reader["parkName"]);
 
 						topFiveParks.Add(survey);
 					}

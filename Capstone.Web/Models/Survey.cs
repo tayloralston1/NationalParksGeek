@@ -16,9 +16,16 @@ namespace Capstone.Web.Models
 		public string State { get; set; }
 		public string ActivityLevel { get; set; }
 		public int SurveyCount { get; set; }
-		//public static List<SelectListItem> Parks = new List<SelectListItem>()
-		//{
-		//	new SelectListItem() {Text = "Glacier National Park", Value = "GNP"},
-		//}
-    }
+		
+
+
+		public static List<SelectListItem> actives = new List<SelectListItem>()
+		{
+			new SelectListItem() {Text = "inactive", Value = "inactive"},
+			new SelectListItem() {Text = "sedentary", Value = "sedentary"},
+			new SelectListItem() {Text = "active", Value = "active"},
+			new SelectListItem() {Text = "extremely active", Value = "extremely active"}
+		};
+
+	}
 }

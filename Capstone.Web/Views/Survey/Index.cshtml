@@ -6,7 +6,7 @@
 <h2>Survey</h2>
 
 <div>
-    <form asp-action="surveyresults" asp-controller="survey" method="post">
+    <form asp-action="index" asp-controller="survey" method="post">
 
         <label asp-for="ParkCode"></label>
         <select asp-for="ParkCode" asp-items="@ViewBag.ParkCode"></select>
@@ -21,7 +21,7 @@
         <span asp-validation-for="State"></span>
 
         <label asp-for="ActivityLevel"></label>
-        <select asp-for="ActivityLevel" asp-items="@ViewBag.ActivityLevel"></select>
+        <select asp-for="ActivityLevel" asp-items="Survey.actives"></select>
         <span asp-validation-for="ActivityLevel"></span>
 
         <input type="submit" value="Submit Survey" />

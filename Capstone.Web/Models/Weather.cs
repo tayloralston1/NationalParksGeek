@@ -9,8 +9,24 @@ namespace Capstone.Web.Models
 	{
 		public string ParkCode { get; set; }
 		public int FiveDayForecastValue { get; set; }
-		public int Low { get; set; }
-		public int High { get; set; }
+		public int FahLow { get; set; }
+		public int FahHigh { get; set; }
+		public int CelHigh
+		{
+			get
+			{
+				int celHigh = (FahHigh-32) * (5 / 9);
+				return celHigh;
+			}
+		}
+		public int CelLow
+		{
+			get
+			{
+				int celLow = (FahLow - 32) * (5 / 9);
+				return celLow;
+			}
+		}
 		public string Forecast { get; set; }
 
 		//suggested gear based on temp
@@ -39,18 +55,18 @@ namespace Capstone.Web.Models
 			return gear;
 		}
 
-		public string TempAdvisory(int high, int low)
+		public string TempAdvisory(int FahHigh, int FahLow)
 		{
 			string advisory = "";
-			if (high > 75)
+			if (FahHigh > 75)
 			{
 				advisory = "Bring an extra gallon of H2O";
 			}
-			else if (high - low > 20)
+			else if (FahHigh - FahLow > 20)
 			{
 				advisory = "Wear breathable layers.";
 			}
-			else if (low < 20)
+			else if (FahLow < 20)
 			{
 				advisory = "WARNING! YOU WILL FREEZE TO DEATH!!!!";
 			}
