@@ -8,13 +8,13 @@
 
 @foreach (var park in Model)
 {
-<div>
-    <div>
+<div class="row" id="index">
+    <div class="col-lg-4" >
         <a asp-controller="home" asp-action="detail" asp-route-parkCode="@park.ParkCode" >
-            <img src="~/img/parks/@(park.ParkCode).jpg" />
+            <img class="NPImage" id="index" src="~/img/parks/@(park.ParkCode).jpg" />
         </a>
     </div>
-    <div>
+    <div class="col-lg-8" >
         <a asp-controller="home" asp-action="detail" asp-route-parkCode="@park.ParkCode">
             <h3>@park.ParkName</h3>
         </a>

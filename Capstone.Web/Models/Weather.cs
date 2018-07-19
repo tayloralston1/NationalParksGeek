@@ -11,22 +11,31 @@ namespace Capstone.Web.Models
 		public int FiveDayForecastValue { get; set; }
 		public int FahLow { get; set; }
 		public int FahHigh { get; set; }
+
+		/// <summary>
+		/// Celsius Temp Derived property
+		/// </summary>
 		public int CelHigh
 		{
 			get
 			{
-				int celHigh = (FahHigh-32) * (5 / 9);
+				int celHigh = (int)((FahHigh-32) * (.5556));
 				return celHigh;
 			}
 		}
+		/// <summary>
+		/// Celsius Temp Derived property
+		/// </summary>
 		public int CelLow
 		{
 			get
 			{
-				int celLow = (FahLow - 32) * (5 / 9);
+				int celLow = (int)((FahLow - 32) * (.5556));
 				return celLow;
 			}
 		}
+
+
 		public string Forecast { get; set; }
 
 		//suggested gear based on temp

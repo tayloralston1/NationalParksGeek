@@ -4,15 +4,19 @@
 }
 
 <h2>Favorite Parks</h2>
-@foreach(var survey in Model)
-{ 
-<div>
-    <img src="/img/parks/@(survey.ParkCode).jpg"/>
-</div>
-<div>
-     <p>@survey.ParkName</p>
-</div>
-<div>
-    <p>@survey.SurveyCount</p>
-</div>
+@foreach (var survey in Model)
+{
+    <div>
+        <a asp-controller="home" asp-action="detail" asp-route-parkCode="@survey.ParkCode">
+            <img src="/img/parks/@(survey.ParkCode).jpg" />
+        </a>
+    </div>
+    <div>
+        <a asp-controller="home" asp-action="detail" asp-route-parkCode="@survey.ParkCode">
+            <p>@survey.ParkName</p>
+        </a>
+    </div>
+    <div>
+        <p>@survey.SurveyCount</p>
+    </div>
 }

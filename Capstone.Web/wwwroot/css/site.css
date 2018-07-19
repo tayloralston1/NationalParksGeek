@@ -35,3 +35,52 @@ body {
         display: none;
     }
 }
+
+#index.NPImage {
+    width: 22em;
+    height: auto;
+}
+
+#index.row {
+    margin: 5em;
+}
+
+.quote {
+    margin: 2em 0em 0em 0em;
+    text-align: center;
+    font-size: 2em;
+    font-style: oblique;
+}
+
+.quoteSource {
+    text-align: center;
+}
+
+#detail.table {
+    margin: 5em;
+    text-align: center;
+}
+
+th{
+    
+    text-align: center;
+}
+.weatherBox{
+    display:grid;
+    grid-template-columns:auto auto auto auto auto;
+    /*margin: 10em;*/
+}
+.weatherBoxItem{
+    margin: 2em;
+}
+
+#todayWeatherIMG {
+    width: 15em;
+    height: auto;
+}
+
+#forecastIMG {
+    width: 10em;
+    height: auto;
+}
+

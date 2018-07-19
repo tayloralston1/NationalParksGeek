@@ -38,8 +38,8 @@ namespace Capstone.Web.DAL
 						Weather weather = new Weather();
 						weather.ParkCode = Convert.ToString(reader["parkCode"]);
 						weather.FiveDayForecastValue = Convert.ToInt32(reader["fiveDayForecastValue"]);
-						weather.Low = Convert.ToInt32(reader["low"]);
-						weather.High = Convert.ToInt32(reader["high"]);
+						weather.FahLow = Convert.ToInt32(reader["low"]);
+						weather.FahHigh = Convert.ToInt32(reader["high"]);
 						weather.Forecast = Convert.ToString(reader["forecast"]);
 
 						weathers.Add(weather);

@@ -4,22 +4,25 @@
 }
 
 <h2>@Model.ParkName</h2>
-<div>
-    <h3>@Model.State</h3>
-</div>
+
 <div>
     <div>
         <img src="~/img/parks/@(Model.ParkCode).jpg" />
     </div>
     <div>
-        <h3>@Model.ParkName</h3>
+        <div class="quote">@Model.InspirationalQuote</div>
+    </div>
+    <div>
+        <div class="quoteSource">@Model.InspirationalQuoteSource</div>
     </div>
     <div>
         <div>@Model.ParkDescription</div>
     </div>
-    <table class="table">
+
+    <table class="table" id="detail">
         <thead>
             <tr>
+                <th>STATE</th>
                 <th>ACREAGE</th>
                 <th>ELEVATION</th>
                 <th>MILES OF TRAIL</th>
@@ -33,6 +36,7 @@
         </thead>
         <tbody>
             <tr>
+                <td>@Model.State</td>
                 <td>@Model.Acreage</td>
                 <td>@Model.ElevationInFt Feet</td>
                 <td>@Model.MilesOfTrail Miles</td>
@@ -45,11 +49,17 @@
             </tr>
         </tbody>
     </table>
-    <form >
-        <input type="radio" name="Unit" value="f" checked> Fahrenheit<br>
-        <input type="radio" name="Unit" value="c"> Celcius<br>
-        
+
+    <form asp-controller="home" asp-action="tempUnit" method=post asp-route-parkCode="@Model.ParkCode">
+
+        <button>Convert to Celsius</button>
+        <input type="hidden" value="c" name="userPreference" />
+
+        <button>Convert to Fahrenheit</button>
+        <input type="hidden" value="f" name="userPreference" />
+
     </form>
+
     <div class="weatherBox">
 
         @foreach (var weather in Model.Forecast)
@@ -57,21 +67,33 @@
 
             @if (weather.FiveDayForecastValue == 1)
             {
-                <div class="todayWeather">
-                    <img src="~/img/weather/@(weather.Forecast.Replace(" ", String.Empty)).png" />
-                    <p>High @weather.FahHigh Low @weather.FahLow</p>
+                <div class="weatherBoxItem">
+                    <img id="todayWeatherIMG" src="~/img/weather/@(weather.Forecast.Replace(" ", String.Empty)).png" />
+                    @if (Model.UserPreference == "c")
+                    {
+                        <p>High @weather.CelHigh Low @weather.CelLow</p>
+                    }
+                    else
+                    {
+                        <p>High @weather.FahHigh Low @weather.FahLow</p>
+                    }
+
                     <p>How To Be Prepared: @weather.GetTheGear(weather.Forecast)</p>
                     <p>Advisory Warning: @weather.TempAdvisory(weather.FahHigh, weather.FahLow)</p>
-
-
-
                 </div>
             }
             else
             {
-                <div class="forecast">
-                    <img src="~/img/weather/@(weather.Forecast.Replace(" ",String.Empty)).png" />
-                    <p>High @weather.FahHigh Low @weather.FahLow</p>
+                <div class="weatherBoxItem">
+                    <img id="forecastIMG" src="~/img/weather/@(weather.Forecast.Replace(" ",String.Empty)).png" />
+                    @if (Model.UserPreference == "c")
+                    {
+                        <p>High @weather.CelHigh Low @weather.CelLow</p>
+                    }
+                    else
+                    {
+                        <p>High @weather.FahHigh Low @weather.FahLow</p>
+                    }
                     <p>How To Be Prepared: @weather.GetTheGear(weather.Forecast)</p>
                     <p>Advisory Warning: @weather.TempAdvisory(weather.FahHigh, weather.FahLow)</p>
                 </div>
