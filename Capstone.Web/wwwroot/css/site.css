@@ -35,7 +35,7 @@ body {
         display: none;
     }
 }
-
+/*Index*/
 #index.NPImage {
     width: 22em;
     height: auto;
@@ -45,33 +45,47 @@ body {
     margin: 5em;
 }
 
-.quote {
-    margin: 2em 0em 0em 0em;
+/*Detail*/
+/*image*/
+.detailImg {
     text-align: center;
-    font-size: 2em;
+    margin: 2em 0em 0em 0em;
+}
+
+/*quote & source*/
+.quote {
+    margin: 1em 3em 0em 3em;
+    text-align: center;
+    font-size: 1.5em;
     font-style: oblique;
 }
 
 .quoteSource {
     text-align: center;
 }
+.parkDescription {
+    margin: 1em 3em 0em 3em;
+}
 
 #detail.table {
-    margin: 5em;
+    margin: 5em 0em 5em 0em;
+    padding: 1em;
     text-align: center;
 }
 
 th{
-    
     text-align: center;
 }
-.weatherBox{
-    display:grid;
-    grid-template-columns:auto auto auto auto auto;
+/*Weather*/
+.weatherBox {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    justify-content: center;
     /*margin: 10em;*/
 }
 .weatherBoxItem{
     margin: 2em;
+    
 }
 
 #todayWeatherIMG {
@@ -83,4 +97,19 @@ th{
     width: 10em;
     height: auto;
 }
+form{
+    display:inline;
+}
+/*.btn-group{
+    display: inline;
+}*/
+
+/*Survey*/
+.survey{
+    margin: 2em 0em, 2em, 0em;
+    padding: 1em;
+  
+}
+
+
 

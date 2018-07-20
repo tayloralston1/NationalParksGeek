@@ -5,25 +5,30 @@
 
 <h2>Survey</h2>
 
-<div>
+<div class="survey">
     <form asp-action="index" asp-controller="survey" method="post">
-
-        <label asp-for="ParkCode"></label>
-        <select asp-for="ParkCode" asp-items="@ViewBag.ParkCode"></select>
-        <span asp-validation-for="ParkCode"></span>
-        
-        <label asp-for="Email"></label>
-        <input asp-for="Email" />
-        <span asp-validation-for="Email"></span>
-
-        <label asp-for="State"></label>
-        <input asp-for="State" />
-        <span asp-validation-for="State"></span>
-
-        <label asp-for="ActivityLevel"></label>
-        <select asp-for="ActivityLevel" asp-items="Survey.actives"></select>
-        <span asp-validation-for="ActivityLevel"></span>
-
-        <input type="submit" value="Submit Survey" />
+        <div class="form">
+            <label asp-for="ParkCode"></label>
+            <select asp-for="ParkCode" asp-items="@ViewBag.ParkCode"></select>
+            <span asp-validation-for="ParkCode"></span>
+        </div>
+        <div>
+            <label asp-for="Email"></label>
+            <input asp-for="Email" />
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div>
+            <label asp-for="State"></label>
+            <input asp-for="State" />
+            <span asp-validation-for="State"></span>
+        </div>
+        <div>
+            <label asp-for="ActivityLevel">Activity Level</label>
+            <select asp-for="ActivityLevel" asp-items="Survey.actives"></select>
+            <span asp-validation-for="ActivityLevel"></span>
+        </div>
+        <div>
+            <input type="submit" value="Submit Survey" />
+        </div>
     </form>
 </div>

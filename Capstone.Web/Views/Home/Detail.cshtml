@@ -6,20 +6,25 @@
 <h2>@Model.ParkName</h2>
 
 <div>
+    <div class="detailImg">
+        <img  src="~/img/parks/@(Model.ParkCode).jpg" />
+    </div>
+        <div>
+            <div class="quote">@Model.InspirationalQuote</div>
+        </div>
     <div>
-        <img src="~/img/parks/@(Model.ParkCode).jpg" />
+        <div class="quoteSource">-@Model.InspirationalQuoteSource</div>
     </div>
     <div>
-        <div class="quote">@Model.InspirationalQuote</div>
-    </div>
-    <div>
-        <div class="quoteSource">@Model.InspirationalQuoteSource</div>
-    </div>
-    <div>
-        <div>@Model.ParkDescription</div>
+        <div class="parkDescription">@Model.ParkDescription</div>
     </div>
 
     <table class="table" id="detail">
+        <thead>
+            <tr>
+                <th colspan="10">PARK STATISTICS</th> 
+            </tr>
+        </thead>
         <thead>
             <tr>
                 <th>STATE</th>
@@ -49,17 +54,18 @@
             </tr>
         </tbody>
     </table>
+    @*<div class="btn-group">
+        <form asp-controller="home" asp-action="tempUnit" method=post asp-route-parkCode="@Model.ParkCode">
 
-    <form asp-controller="home" asp-action="tempUnit" method=post asp-route-parkCode="@Model.ParkCode">
+            <button class="btn">Convert to Celsius</button>
+            <input type="hidden" value="c" name="userPreference" />
+        </form>
 
-        <button>Convert to Celsius</button>
-        <input type="hidden" value="c" name="userPreference" />
-    </form>
-    <form asp-controller="home" asp-action="tempUnit" method=post asp-route-parkCode="@Model.ParkCode">
-        <button>Convert to Fahrenheit</button>
-        <input type="hidden" value="f" name="userPreference" />
-
-    </form>
+        <form asp-controller="home" asp-action="tempUnit" method=post asp-route-parkCode="@Model.ParkCode">
+            <button class="btn">Convert to Fahrenheit</button>
+            <input type="hidden" value="f" name="userPreference" />
+        </form>
+    </div>*@
 
     <div class="weatherBox">
 
@@ -68,20 +74,35 @@
 
             @if (weather.FiveDayForecastValue == 1)
             {
-                <div class="weatherBoxItem">
-                    <img id="todayWeatherIMG" src="~/img/weather/@(weather.Forecast.Replace(" ", String.Empty)).png" />
-                    @if (Model.UserPreference == "c")
-                    {
-                        <p>High @weather.CelHigh Low @weather.CelLow</p>
-                    }
-                    else
-                    {
-                        <p>High @weather.FahHigh Low @weather.FahLow</p>
-                    }
+        <div class="weatherBoxItem">
+            <img id="todayWeatherIMG" src="~/img/weather/@(weather.Forecast.Replace(" ", String.Empty)).png" />
+            @if (Model.UserPreference == "c")
+            {
+                <p><strong>High:</strong> @weather.CelHigh <strong>Low:</strong> @weather.CelLow</p>
+            }
+            else
+            {
+                <p><strong>High:</strong> @weather.FahHigh <strong>Low:</strong> @weather.FahLow</p>
+            }
 
-                    <p>How To Be Prepared: @weather.GetTheGear(weather.Forecast)</p>
-                    <p>Advisory Warning: @weather.TempAdvisory(weather.FahHigh, weather.FahLow)</p>
-                </div>
+            <p><strong>How To Be Prepared: </strong></p>
+            <p>@weather.GetTheGear(weather.Forecast)</p>
+            <p><strong>Advisory Warning: </strong></p>
+            <p>@weather.TempAdvisory(weather.FahHigh, weather.FahLow)</p>
+
+            <div class="btn-group">
+                <form asp-controller="home" asp-action="tempUnit" method=post asp-route-parkCode="@Model.ParkCode">
+
+                    <button class="btn">Celsius</button>
+                    <input type="hidden" value="c" name="userPreference" />
+                </form>
+
+                <form asp-controller="home" asp-action="tempUnit" method=post asp-route-parkCode="@Model.ParkCode">
+                    <button class="btn">Fahrenheit</button>
+                    <input type="hidden" value="f" name="userPreference" />
+                </form>
+            </div>
+        </div>
             }
             else
             {
@@ -89,20 +110,19 @@
                     <img id="forecastIMG" src="~/img/weather/@(weather.Forecast.Replace(" ",String.Empty)).png" />
                     @if (Model.UserPreference == "c")
                     {
-                        <p>High @weather.CelHigh Low @weather.CelLow</p>
+                        <p><strong>High:</strong> @weather.CelHigh <strong>Low:</strong> @weather.CelLow</p>
                     }
                     else
                     {
-                        <p>High @weather.FahHigh Low @weather.FahLow</p>
+                        <p><strong>High:</strong> @weather.FahHigh <strong>Low:</strong> @weather.FahLow</p>
                     }
-                    <p>How To Be Prepared: @weather.GetTheGear(weather.Forecast)</p>
-                    <p>Advisory Warning: @weather.TempAdvisory(weather.FahHigh, weather.FahLow)</p>
+                    <p><strong>How To Be Prepared: </strong></p> 
+                    <p>@weather.GetTheGear(weather.Forecast)</p>
+                    <p><strong>Advisory Warning: </strong></p>
+                    <p>@weather.TempAdvisory(weather.FahHigh, weather.FahLow)</p>
                 </div>
             }
         }
-
-
-
     </div>
 </div>
 
