@@ -3,6 +3,8 @@ for details on configuring this project to bundle and minify static web assets. 
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: 'Roboto Condensed', sans-serif;
+    /*font-family: 'Roboto Slab', serif;*/
 }
 
 /* Wrapping element */
@@ -105,10 +107,22 @@ form{
 }*/
 
 /*Survey*/
-.survey{
-    margin: 2em 0em, 2em, 0em;
+#survey.row {
+    margin: 5em;
     padding: 1em;
-  
 }
+/*Survey Results*/
+#surveyResults{
+    margin: 2em 0em, 2em, 0em;
+}
+
+.resultImg {
+    width: 20em;
+    height: auto;
+}
+
+
+
+
 
 

@@ -49,7 +49,7 @@ namespace Capstone.Web.Models
 					gear = "Pack snowshoes";
 					break;
 				case "rain":
-					gear = "Pack rain gear and two galosh";
+					gear = "Pack rain gear";
 					break;
 				case "thunderstorms":
 					gear = "Seek shelter and avoid hiking on exposed ridges";

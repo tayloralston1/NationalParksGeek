@@ -75,7 +75,7 @@
             @if (weather.FiveDayForecastValue == 1)
             {
         <div class="weatherBoxItem">
-            <img id="todayWeatherIMG" src="~/img/weather/@(weather.Forecast.Replace(" ", String.Empty)).png" />
+            <img id="todayWeatherIMG" src="~/img/weather/@(weather.Forecast.Replace(" ", String.Empty)).jpg" />
             @if (Model.UserPreference == "c")
             {
                 <p><strong>High:</strong> @weather.CelHigh <strong>Low:</strong> @weather.CelLow</p>
@@ -107,7 +107,7 @@
             else
             {
                 <div class="weatherBoxItem">
-                    <img id="forecastIMG" src="~/img/weather/@(weather.Forecast.Replace(" ",String.Empty)).png" />
+                    <img id="forecastIMG" src="~/img/weather/@(weather.Forecast.Replace(" ",String.Empty)).jpg" />
                     @if (Model.UserPreference == "c")
                     {
                         <p><strong>High:</strong> @weather.CelHigh <strong>Low:</strong> @weather.CelLow</p>

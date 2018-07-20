@@ -6,17 +6,19 @@
 <h2>Favorite Parks</h2>
 @foreach (var survey in Model)
 {
-    <div>
+<div class="row" id="survey">
+    <div class="col-lg-4" id="surveyResults">
         <a asp-controller="home" asp-action="detail" asp-route-parkCode="@survey.ParkCode">
-            <img src="/img/parks/@(survey.ParkCode).jpg" />
+            <img class="resultImg" src="/img/parks/@(survey.ParkCode).jpg" />
         </a>
     </div>
-    <div>
+    <div class="col-lg-3" id="surveyResults">
         <a asp-controller="home" asp-action="detail" asp-route-parkCode="@survey.ParkCode">
-            <p>@survey.ParkName</p>
+            <h3>@survey.ParkName</h3>
         </a>
+        <div>
+            <p>@survey.SurveyCount visitor(s) call(s) this their favorite park.</p>
+        </div>
     </div>
-    <div>
-        <p>@survey.SurveyCount</p>
-    </div>
+</div>
 }
