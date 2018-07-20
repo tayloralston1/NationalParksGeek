@@ -34,11 +34,7 @@ namespace Capstone.Web.Models
 				return celLow;
 			}
 		}
-
-
 		public string Forecast { get; set; }
-
-		//suggested gear based on temp
 		public string GetTheGear(string forecast)
 		{
 			string gear = "";
@@ -63,7 +59,6 @@ namespace Capstone.Web.Models
 			}
 			return gear;
 		}
-
 		public string TempAdvisory(int FahHigh, int FahLow)
 		{
 			string advisory = "";
@@ -86,9 +81,5 @@ namespace Capstone.Web.Models
 			return advisory;
 
 		}
-
-
-		//convert temp from F to C
-
 	}
 }

@@ -83,7 +83,6 @@ th{
     display: grid;
     grid-template-columns: auto auto auto auto auto;
     justify-content: center;
-    /*margin: 10em;*/
 }
 .weatherBoxItem{
     margin: 2em;
@@ -102,10 +101,6 @@ th{
 form{
     display:inline;
 }
-/*.btn-group{
-    display: inline;
-}*/
-
 /*Survey*/
 #survey.row {
     margin: 5em;

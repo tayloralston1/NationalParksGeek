@@ -46,7 +46,6 @@ namespace Capstone.Web.DAL
 			{
 				return false;
 			}
-			
 		}
 
 		public IList<SurveyResults> GetSurveys()
@@ -67,11 +66,7 @@ namespace Capstone.Web.DAL
 					while (reader.Read())
 					{
 						SurveyResults survey = new SurveyResults();
-						//survey.SurveyID = Convert.ToInt32(reader["surveyId"]);
 						survey.ParkCode = Convert.ToString(reader["parkCode"]);
-						//survey.State = Convert.ToString(reader["state"]);
-						//survey.Email = Convert.ToString(reader["emailAddress"]);
-						//survey.ActivityLevel = Convert.ToString(reader["activityLevel"]);
 						survey.SurveyCount = Convert.ToInt32(reader["Favorites"]);
 						survey.ParkName = Convert.ToString(reader["parkName"]);
 

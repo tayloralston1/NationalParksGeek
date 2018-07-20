@@ -15,7 +15,6 @@ namespace Capstone.Web.DAL
 			this.connectionString = connectionString;
 		}
 
-
 		public IList<Weather> FiveDayForecast(string parkCode)
 		{
 			IList<Weather> weathers = new List<Weather>();
@@ -51,7 +50,6 @@ namespace Capstone.Web.DAL
 				throw;
 			}
 			return weathers;
-
 		}
 	}
 }

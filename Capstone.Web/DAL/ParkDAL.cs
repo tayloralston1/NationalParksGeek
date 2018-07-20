@@ -24,11 +24,8 @@ namespace Capstone.Web.DAL
 		}
 
 		public Park GetPark(string parkCode)
-
-		{
-
+		{ 
 			return GetParks().FirstOrDefault(p => p.ParkCode == parkCode);
-
 		}
 
 		/// <summary>
