@@ -44,8 +44,17 @@ namespace Capstone.Web.Controllers
 		[ValidateAntiForgeryToken]
 		public IActionResult Index(Survey newSurvey)
 		{
+			if (ModelState.IsValid)
+			{
 			sdal.AddSurvey(newSurvey);
+			TempData["Show_Message"] = true;
 			return RedirectToAction("surveyresults","survey");
+			}
+			var parkCodes = dal.GetParks();
+			var options = parkCodes.Select(parkCode => new SelectListItem() { Text = parkCode.ParkName, Value = parkCode.ParkCode });
+			ViewBag.ParkCode = options;
+
+			return View();
 		}
 
 		/// <summary>

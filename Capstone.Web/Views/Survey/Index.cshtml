@@ -17,18 +17,23 @@
             <input asp-for="Email" />
             <span asp-validation-for="Email"></span>
         </div>
+        @*<div class="form-group">
+            <label for="focusedInput">Email</label>
+            <input class="form-control" id="focusedInput" type="text">
+        </div>*@
         <div>
             <label asp-for="State"></label>
-            <input asp-for="State" />
+            <select asp-for="State" asp-items="Survey.States"></select>
             <span asp-validation-for="State"></span>
         </div>
         <div>
             <label asp-for="ActivityLevel">Activity Level</label>
-            <select asp-for="ActivityLevel" asp-items="Survey.actives"></select>
+            <select asp-for="ActivityLevel" asp-items="Survey.Actives"></select>
             <span asp-validation-for="ActivityLevel"></span>
         </div>
         <div>
-            <input type="submit" value="Submit Survey" />
+            <button type="submit" class="btn">Submit Survey</button>
+            @*<input type="submit" value="Submit Survey" />*@
         </div>
     </form>
 </div>
