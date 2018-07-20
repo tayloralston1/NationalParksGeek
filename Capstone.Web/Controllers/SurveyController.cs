@@ -19,6 +19,11 @@ namespace Capstone.Web.Controllers
 			this.dal = dal;
 			this.sdal = sdal;
 		}
+
+		/// <summary>
+		/// displaying form for survey, takes in park code via database
+		/// </summary>
+		/// <returns></returns>
 		[HttpGet]
 		public IActionResult Index()
 		{
@@ -28,20 +33,25 @@ namespace Capstone.Web.Controllers
 			ViewBag.ParkCode = options;
 
 			return View();
-			
 		}
+
+		/// <summary>
+		/// adds user provided survey information to database
+		/// </summary>
+		/// <param name="newSurvey"></param>
+		/// <returns></returns>
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult Index(Survey newSurvey)
 		{
-			//var parkCodes = dal.GetParks();
-			//var options = parkCodes.Select(parkCode => new SelectListItem() { Text = parkCode.ParkName, Value = parkCode.ParkCode });
-			//ViewBag.ParkCode = options;
 			sdal.AddSurvey(newSurvey);
 			return RedirectToAction("surveyresults","survey");
-
 		}
 
+		/// <summary>
+		/// retrieves top 5 parks based on number of surveys from DB
+		/// </summary>
+		/// <returns></returns>
 		public IActionResult SurveyResults()
 		{
 			IList<SurveyResults> results = new List<SurveyResults>();

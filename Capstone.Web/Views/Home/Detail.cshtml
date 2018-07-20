@@ -54,7 +54,8 @@
 
         <button>Convert to Celsius</button>
         <input type="hidden" value="c" name="userPreference" />
-
+    </form>
+    <form asp-controller="home" asp-action="tempUnit" method=post asp-route-parkCode="@Model.ParkCode">
         <button>Convert to Fahrenheit</button>
         <input type="hidden" value="f" name="userPreference" />
 

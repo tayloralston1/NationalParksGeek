@@ -21,6 +21,11 @@ namespace Capstone.Web.Controllers
 
 		private readonly IWeatherDAL wdal;
 
+		/// <summary>
+		/// gives us access to DAL for park information and weather information from database
+		/// </summary>
+		/// <param name="dal"></param>
+		/// <param name="wdal"></param>
 		public HomeController(IParkDAL dal, IWeatherDAL wdal)
 		{
 			this.dal = dal;
@@ -41,26 +46,32 @@ namespace Capstone.Web.Controllers
 			var park = dal.GetPark(parkCode);
 			park.Forecast = wdal.FiveDayForecast(parkCode);
 			string pref = HttpContext.Session.GetString(Session_Key);
-			if (pref == null)
+			switch (pref)
 			{
-				pref = "f";
-				HttpContext.Session.SetString(Session_Key, pref);
-			}
-			if (pref == "f")
-			{
-				pref = "f";
-				HttpContext.Session.SetString(Session_Key, pref);
-			}
-			if (pref == "c")
-			{
-				pref = "c";
-				HttpContext.Session.SetString(Session_Key, pref);
+				case null:
+					pref = "f";
+					HttpContext.Session.SetString(Session_Key, pref);
+					break;
+				case "c":
+					HttpContext.Session.SetString(Session_Key, pref);
+					break;
+				case "f":
+					HttpContext.Session.SetString(Session_Key, pref);
+					break;
+				default:
+					break;
 			}
 
 			park.UserPreference = pref;
 			return View(park);
 		}
 
+		/// <summary>
+		/// takes preference from detail page based on unit selected via button
+		/// </summary>
+		/// <param name="parkCode"></param>
+		/// <param name="userPreference"></param>
+		/// <returns></returns>
 		public IActionResult TempUnit(string parkCode, string userPreference)
 		{
 			//set preference in session 
